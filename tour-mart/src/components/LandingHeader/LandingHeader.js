@@ -1,16 +1,4 @@
-body {
-  margin: 0;
-  padding: 0;
-  font-family: "PT-Root-UI", sans-serif !important;
-  /* background: var(--body-color); */
-}
-
-.rotate {
-  transform: rotate(90deg);
-  color: #fff;
-}
-
-/* import { Box, Typography, Grid, Container } from "@mui/material";
+import { Box, Typography, Grid, Container } from "@mui/material";
 import React, { useState, useEffect } from "react";
 import FlightIcon from "@mui/icons-material/Flight";
 import BedIcon from "@mui/icons-material/Bed";
@@ -93,4 +81,4 @@ export const LandingHeader = () => {
       </Container>
     </Box>
   );
-}; */
+};
