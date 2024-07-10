@@ -24,19 +24,11 @@ import RadioGroup from "@mui/material/RadioGroup";
 import FormControlLabel from "@mui/material/FormControlLabel";
 import FormControl from "@mui/material/FormControl";
 import Alert from "@mui/material/Alert";
-import FlightLandIcon from "@mui/icons-material/FlightLand";
-import FlightTakeoffIcon from "@mui/icons-material/FlightTakeoff";
 import CalendarMonthIcon from "@mui/icons-material/CalendarMonth";
 import SearchIcon from "@mui/icons-material/Search";
-import GroupsIcon from "@mui/icons-material/Groups";
-import { addDays } from "date-fns";
-
 import CloseIcon from "@mui/icons-material/Close";
-
 import flightData from "../flightData.js";
 import { Calendar } from "react-date-range";
-import ArrowDropDownIcon from "@mui/icons-material/ArrowDropDown";
-import ArrowDropUpIcon from "@mui/icons-material/ArrowDropUp";
 import GpsNotFixedIcon from "@mui/icons-material/GpsNotFixed";
 import RoomIcon from "@mui/icons-material/Room";
 
@@ -104,6 +96,7 @@ function BpRadio(props) {
     />
   );
 }
+
 const Roundway = ({
   tripType,
   iconColor,
@@ -243,17 +236,6 @@ const Roundway = ({
   const handleOpen3 = () => setOpen3(true);
   const handleClose3 = () => setOpen3(false);
 
-  const style4 = {
-    position: "absolute",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    width: "100%",
-    bgcolor: "#FFE9E9",
-    height: "100vh",
-    boxShadow: 24,
-    p: 4,
-  };
   const [open4, setOpen4] = React.useState(false);
   const handleOpen4 = () => setOpen4(true);
   const handleClose4 = () => setOpen4(false);
@@ -276,17 +258,12 @@ const Roundway = ({
   const [fromSuggest, setFromSuggest] = useState(initialData);
   const [toSuggest, setToSuggest] = useState(initialData);
 
-  const [users, setUsers] = useState("");
 
   const [openFrom, setOpenFrom] = useState(false);
   const [openTo, setOpenTo] = useState(false);
   // Date picker
   const [openDate, setOpenDate] = useState(false);
   const [openReturnDate, setOpenReturnDate] = useState(false);
-
-  //todo: is Click state
-  const [click, setClick] = useState(false);
-  //todo: end of click state
 
   // handle click function
   const handleClickAwayCalender = () => {
@@ -1579,152 +1556,7 @@ const Roundway = ({
         </Box>
       </Modal>
 
-      {/* pref airlines */}
 
-      <Modal
-        open={open6}
-        onClose={handleClose6}
-        aria-labelledby="modal-modal-title"
-        aria-describedby="modal-modal-description"
-      >
-        <Box sx={style6}>
-          <Container>
-            <Typography
-              sx={{
-                bgcolor: "var(--white)",
-                px: 2,
-                py: 1,
-                mt: 6,
-                color: "var(--primary-color)",
-                display: "flex",
-                justifyContent: "space-between",
-                alignItems: "center",
-              }}
-            >
-              <span>Select Prefered Airlines</span>{" "}
-              <span
-                onClick={() => handleClose6()}
-                style={{
-                  background: "#FFF0ED",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <CloseIcon sx={{ color: "var(--primary-color)" }} />
-              </span>{" "}
-            </Typography>
-            <Box
-              onClick={(e) => e.stopPropagation()}
-              sx={{
-                mt: 3,
-                width: "100%",
-                height: "100%",
-                bgcolor: "white",
-                zIndex: 1500,
-              }}
-            >
-              <Select
-                styles={{
-                  dropdownIndicator: () => ({
-                    display: "none",
-                  }),
-
-                  control: (_, state) => {
-                    return {
-                      borderColor: state.isFocused ? "" : "none",
-                      display: "flex",
-                      cursor: "pointer",
-                    };
-                  },
-                  option: (provided, state) => ({
-                    ...provided,
-                    backgroundColor: state.isFocused
-                      ? "var(--third-color)"
-                      : "none",
-                    color: state.isFocused
-                      ? "var(--primary-color)"
-                      : "var(--text-dark)",
-                    fontFamily: "Poppins, sans-serif  !important",
-                    margin: "0px",
-                    padding: "0px",
-                  }),
-                  menu: (provided) => {
-                    return {
-                      ...provided,
-                      overflowY: "hidden",
-                      borderRadius: 0,
-                      margin: 0,
-                      border: "none",
-                      boxShadow: "none",
-                    };
-                  },
-
-                  menuList: (provided) => {
-                    return {
-                      ...provided,
-
-                      maxHeight: "500px",
-                      marginBottom: "14px",
-                      "::-webkit-scrollbar": {
-                        width: "4px",
-                        height: "0px",
-                      },
-                      "::-webkit-scrollbar-track": {
-                        background: "var(--third-color)",
-                      },
-                      "::-webkit-scrollbar-thumb": {
-                        background: "var(--third-color)",
-                      },
-                    };
-                  },
-
-                  multiValue: (provided) => {
-                    return {
-                      ...provided,
-
-                      backgroundColor: "var(--third-color)",
-                    };
-                  },
-                  multiValueLabel: (provided) => ({
-                    ...provided,
-                    color: "var(--primary-color)",
-
-                    fontSize: "13px",
-                    fontFamily: "Poppins, sans-serif  !important",
-                  }),
-
-                  multiValueRemove: (provided) => {
-                    return {
-                      ...provided,
-                      color: "var(--primary-color)",
-                      cursor: "pointer",
-                      padding: 1,
-                      ":hover": {
-                        backgroundColor: "",
-                      },
-                    };
-                  },
-
-                  placeholder: (provided) => ({
-                    ...provided,
-                    fontSize: "14px", // Set the font size of the placeholder
-                  }),
-                }}
-                onChange={handleSelectAirlinesChange}
-                onInputChange={(inputValue) => {
-                  setSearchInputPrefAir(inputValue);
-                }}
-                value={selectedAirlines}
-                menuIsOpen={true}
-                isMulti
-                placeholder="Select Maximum 5 Airlines"
-                options={selectedAirlines.length === 5 ? [] : valuesArea}
-              />
-            </Box>
-          </Container>
-        </Box>
-      </Modal>
 
       <ClickAwayListener onClickAway={handleClickAway}>
         <Box style={{ position: "relative" }}>
