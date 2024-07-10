@@ -1412,6 +1412,10 @@ const OneWay = ({
                       outline: "none",
                       borderTopRightRadius: "5px",
                       borderTopLeftRadius: "5px",
+                      background: "#fff",
+                      fontSize: "14px",
+                      color: "rgb(66, 66, 66)",
+                      padding: "0px 7px",
                     }}
                   >
                     <option>Economy</option>

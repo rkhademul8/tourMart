@@ -21,7 +21,7 @@ const Home = () => {
         }}
       >
         <Container>
-          <Box pt={5} pb={6}>
+          <Box pt={6} pb={7}>
             <Typography
               style={{
                 color: "white",
